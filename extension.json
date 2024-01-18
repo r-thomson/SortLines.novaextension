@@ -4,29 +4,52 @@
 	"organization": "Ryan Thomson",
 	"description": "Lorem ipsum, dolor sit amet.",
 	"version": "1.0",
-	"categories": [],
-
+	"categories": ["commands"],
 	"main": "main.js",
-
 	"commands": {
 		"editor": [
 			{
 				"title": "Ascending",
 				"paletteTitle": "Sort Lines Ascending",
 				"command": "SortLines.sortLinesAsc",
-				"when": "editorHasSelection"
+				"when": "editorHasFocus && editorHasSelection"
 			},
 			{
 				"title": "Descending",
 				"paletteTitle": "Sort Lines Descending",
 				"command": "SortLines.sortLinesDesc",
-				"when": "editorHasSelection"
+				"when": "editorHasFocus && editorHasSelection"
 			},
 			{
 				"title": "Reverse Lines",
 				"command": "SortLines.reverseLines",
-				"when": "editorHasSelection"
+				"when": "editorHasFocus && editorHasSelection"
 			}
 		]
-	}
+	},
+	"config": [
+		{
+			"key": "SortLines.ignoreWhitespace",
+			"title": "Ignore leading whitespace when sorting",
+			"type": "boolean",
+			"default": true
+		},
+		{
+			"key": "SortLines.caseOrder",
+			"title": "Case ordering",
+			"type": "enum",
+			"values": [
+				["lowerFirst", "Lowercase first (a < A)"],
+				["upperFirst", "Uppercase first (a > A)"]
+			],
+			"default": "lowerFirst"
+		},
+		{
+			"key": "SortLines.useNumericCollation",
+			"title": "Use natural ordering for numbers",
+			"description": "For example, “1” < “2” < “10”",
+			"type": "boolean",
+			"default": false
+		}
+	]
 }
