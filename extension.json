@@ -24,6 +24,11 @@
 				"title": "Reverse Lines",
 				"command": "SortLines.reverseLines",
 				"when": "editorHasFocus && editorHasSelection"
+			},
+			{
+				"title": "Shuffle Lines",
+				"command": "SortLines.shuffleLines",
+				"when": "editorHasFocus && editorHasSelection"
 			}
 		]
 	},

@@ -1,3 +1,5 @@
+const { shuffleArray } = require('./utils');
+
 /** Matches LF, CR, or CRLF */
 const NEWLINE_REGEX = /\n|\r\n|\r/;
 
@@ -82,5 +84,11 @@ exports.sortLinesDescCommand = function (editor) {
 exports.reverseLinesCommand = function (editor) {
 	performLineEdit(editor, (lines) => {
 		lines.reverse();
+	});
+};
+
+exports.shuffleLinesCommand = function (editor) {
+	performLineEdit(editor, (lines) => {
+		shuffleArray(lines);
 	});
 };
