@@ -2,9 +2,12 @@
 	"identifier": "net.ryanthomson.SortLines",
 	"name": "Sort Lines",
 	"organization": "Ryan Thomson",
-	"description": "Lorem ipsum, dolor sit amet.",
+	"description": "Utility to quickly rearrange the selected lines.",
 	"version": "1.0",
 	"categories": ["commands"],
+	"repository": "https://github.com/r-thomson/SortLines.novaextension.git",
+	"bugs": "https://github.com/r-thomson/SortLines.novaextension/issues",
+	"min_runtime": "11.0",
 	"main": "main.js",
 	"commands": {
 		"editor": [
