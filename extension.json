@@ -7,6 +7,7 @@
 	"categories": ["commands"],
 	"repository": "https://github.com/r-thomson/SortLines.novaextension.git",
 	"bugs": "https://github.com/r-thomson/SortLines.novaextension/issues",
+	"license": "© Ryan Thomson",
 	"min_runtime": "11.0",
 	"main": "main.js",
 	"commands": {
