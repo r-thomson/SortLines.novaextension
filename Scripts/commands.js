@@ -16,6 +16,10 @@ const NovaConfig = {
 	get useNumericCollation() {
 		return nova.config.get('SortLines.useNumericCollation', 'bool');
 	},
+	/** @type {boolean} */
+	get smartCommas() {
+		return nova.config.get('SortLines.smartCommas', 'bool');
+	},
 };
 
 /**
@@ -39,10 +43,27 @@ function getCompareFn() {
 }
 
 /**
- * Perform an edit on the selected lines. `callback` should mutate the array in-place.
+ * @param array {string[]}
+ * @returns {boolean}
+ */
+function allExceptLastEndWithComma(array) {
+	return array.every((line, index) => {
+		if (index < array.length - 1) {
+			return line.endsWith(',');
+		} else {
+			return !line.endsWith(',');
+		}
+	});
+}
+
+/**
+ * Perform an edit on the selected lines. `callback` should mutate the array
+ * in-place.
  * @param callback {(lines: string[]) => void}
  */
 function performLineEdit(editor, callback) {
+	const { smartCommas } = NovaConfig;
+
 	editor.edit((textEdit) => {
 		for (const range of editor.selectedRanges) {
 			const lineRange = editor.getLineRangeForRange(range);
@@ -50,10 +71,24 @@ function performLineEdit(editor, callback) {
 			/** @type {string[]} */
 			const lines = editor.getTextInRange(lineRange).split(NEWLINE_REGEX);
 
-			// After the split, there will be one empty string ('') at the end of the array
-			// because of the final newline. Ensure it stays at the end of the array.
+			// After the split, there will be one empty string ('') at the end of the
+			// array because of the final newline. Remove now and re-add after sorting.
 			lines.pop();
+
+			// For the smart comma case, make every line end in a comma, then remove
+			// the last line's comma after sorting.
+			const commaAdded = smartCommas && allExceptLastEndWithComma(lines);
+			if (commaAdded) {
+				lines[lines.length - 1] += ',';
+			}
+
+			// Mutate the array here
 			callback(lines);
+
+			if (commaAdded) {
+				lines[lines.length - 1] = lines.at(-1).slice(0, -1);
+			}
+
 			lines.push('');
 
 			textEdit.replace(

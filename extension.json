@@ -59,6 +59,13 @@
 			"description": "For example, “1” < “2” < “10”",
 			"type": "boolean",
 			"default": false
+		},
+		{
+			"key": "SortLines.smartCommas",
+			"title": "Smart commas",
+			"description": "If every line except the last ends in a comma, the same will be true after sorting",
+			"type": "boolean",
+			"default": false
 		}
 	]
 }
