@@ -3,7 +3,7 @@
 	"name": "Sort Lines",
 	"organization": "Ryan Thomson",
 	"description": "Utility to quickly rearrange the selected lines.",
-	"version": "1.0",
+	"version": "1.1",
 	"categories": ["commands"],
 	"repository": "https://github.com/r-thomson/SortLines.novaextension.git",
 	"bugs": "https://github.com/r-thomson/SortLines.novaextension/issues",
